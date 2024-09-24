@@ -35,6 +35,16 @@ const EarningsSchema: Schema = new Schema({
       default: false,
     },
   },
+  joinYoutube: {
+    status: {
+      type: Boolean,
+      default: false,
+    },
+    earned: {
+      type: Boolean,
+      default: false,
+    },
+  },
 });
 const Earnings = model("Earnings", EarningsSchema);
 

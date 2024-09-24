@@ -79,6 +79,26 @@ router.post(
     }
   }
 );
+
+router.post(
+  "/update/joinYoutube/:username",
+  async (req: Request, res: Response) => {
+    const user = await Earnings.findOne({ username: req.params.username });
+    if (user) {
+      const updated_user = await Earnings.findOneAndUpdate(
+        { username: req.params.username },
+        {
+          "joinYoutube.status": req.body.status,
+          "joinYoutube.earned": req.body.earned,
+        }
+      );
+
+      return res.status(200).json({ msg: "Update successfully!" });
+    } else {
+      return res.status(400).json({ msg: "You have no permission" });
+    }
+  }
+);
 router.post("/:username", async (req: Request, res: Response) => {
   let user = await Earnings.findOne({ username: req.params.username });
   if (user) {
